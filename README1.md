@@ -67,7 +67,7 @@ Clone the repository:
 
 Bash
 
-git clone [https://github.com/YOUR_GITHUB_USERNAME/movie-watchlist.git]
+git clone [https://github.com/Belle531/movie-watchlist.git]
 cd movie-watchlist
 (Replace YOUR_GITHUB_USERNAME with your actual GitHub username)
 
@@ -135,3 +135,93 @@ src/App.css: Basic styling for the application's layout and appearance.
 ###### Demo Screenshot
 
 Here's a screenshot of the MovieWatchlist table in the AWS DynamoDB Console, showing some sample data created via the application:
+
+## 🎬 Cassandra's Movie Watchlist App
+
+A full-stack React app for tracking and managing your personal movie collection, powered by AWS DynamoDB. Users can add movies, write short reviews, rate them with stars, mark them as watched, and delete them — all through a clean responsive interface.
+
+---
+
+## ✨ Features
+
+- ✅ Add new movies with title, genre, review, and star rating
+- ✅ Toggle watched/unwatched status
+- ✅ Delete movies from your list
+- ✅ Persist movie data in DynamoDB
+- ✅ Responsive UI for desktop and mobile devices
+- ✅ Styled using Sass (or Chakra UI optionally)
+- ✅ Scalable structure ready for testing and future expansion
+
+---
+
+## 🛠 Technologies Used
+
+| Frontend       | Backend / Database |
+|----------------|---------------------|
+| React (CRA)    | AWS DynamoDB        |
+| Sass / CSS     | AWS SDK v3          |
+| UUID           | @aws-sdk/lib-dynamodb |
+| Jest (Testing) | Environment Variables |
+
+---
+
+## 📦 Project Setup
+
+### 1. Clone the Repo
+
+```bash
+git clone [https://github.com/Belle531/movie-watchlist.git]
+cd movie-watchlist
+
+## 2. Install Dependencies
+npm install
+### 3. Create .env File Never share credentials publicly
+REACT_APP_AWS_REGION=your-region
+REACT_APP_AWS_ACCESS_KEY_ID=your-access-key
+REACT_APP_AWS_SECRET_ACCESS_KEY=your-secret-key
+
+#### 4. Run the App 
+npm start
+Visit [hhp://localhost:3000]
+🌐 API & AWS Integration
+All movie data is stored in a DynamoDB table (MovieWatchlist). CRUD operations are handled in src/dynamo.js via:
+- createMovie()
+- scanMovies()
+- updateMovie()
+- deleteMovie()
+- getMovie()
+Each movie uses a UUID (id) as the primary key.
+
+##### 5. Testing/Unit Tests
+npm test //Example async text for createMovie in src/--tests--/dynamo.test.js
+
+###### 6. Responsive Design
+Sass styles include breakpoints and layout adjustments for screens under 600px. You can expand responsiveness using:
+- Chakra UI’s responsive props
+- CSS Grid or Flexbox layouts
+- Additional media queries in App.scss
+
+####### 7.Project Structure
+src/
+├── App.js
+├── App.scss
+├── dynamo.js
+├── components/
+│   └── MovieCard.js (optional)
+├── __tests__/
+│   └── dynamo.test.js
+
+######## 8. Future Enhancements
+
+- Advanced filtering and sorting
+-  Star animations or ratings meter
+-  User authentication and login
+-  Test coverage report dashboard
+-  Deployment to Vercel or Netlify
+
+Developed By
+Cassandra Moore
+Mentor, Engineer, Course Architect
+Helping learners build real-world front-end projects
+
+
