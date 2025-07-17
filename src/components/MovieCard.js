@@ -3,32 +3,37 @@ import React from 'react';
 
 export default function MovieCard({ movie, onDelete, onToggleWatched }) {
   return (
-    <li className="bg-white rounded-lg shadow-md p-4 flex justify-between items-start transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-      <div className="text-left space-y-2">
-        <h3 className="text-xl font-bold text-indigo-700">{movie.title}</h3>
-        <p className="text-sm"><strong>Genre:</strong> {movie.genre}</p>
-        <p className="text-sm"><strong>Review:</strong> {movie.review || "No review provided."}</p>
-        <p className="text-sm"><strong>Rating:</strong> {movie.rating > 0 ? '⭐'.repeat(movie.rating) : "Not rated"}</p>
+    <li className="card bg-base-100 shadow-md transition hover:shadow-xl hover:-translate-y-1">
+      <div className="card-body">
+        <h2 className="card-title text-indigo-700">{movie.title}</h2>
 
-        <label className="inline-flex items-center cursor-pointer">
-          <input
-            type="checkbox"
-            checked={movie.watched}
-            onChange={() => onToggleWatched(movie.id, movie.watched)}
-            className="accent-indigo-600"
-          />
-          <span className="ml-2 text-sm italic text-gray-600">
+        <div className="space-y-2 text-sm">
+          <p><span className="badge badge-outline">Genre</span> {movie.genre}</p>
+          <p><span className="badge badge-outline">Review</span> {movie.review || "No review"}</p>
+          <p><span className="badge badge-outline">Rating</span> {movie.rating > 0 ? '⭐'.repeat(movie.rating) : "Not rated"}</p>
+        </div>
+
+        <label className="label cursor-pointer mt-2">
+          <span className="label-text text-sm text-gray-600 mr-2">
             {movie.watched ? "Watched" : "Unwatched"}
           </span>
+          <input
+            type="checkbox"
+            className="toggle toggle-sm toggle-success"
+            checked={movie.watched}
+            onChange={() => onToggleWatched(movie.id, movie.watched)}
+          />
         </label>
-      </div>
 
-      <button
-        className="bg-red-600 hover:bg-red-700 active:scale-95 transition px-3 py-2 text-sm rounded text-white"
-        onClick={() => onDelete(movie.id)}
-      >
-        Delete
-      </button>
+        <div className="card-actions justify-end mt-4">
+          <button
+            className="btn btn-sm btn-error"
+            onClick={() => onDelete(movie.id)}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
     </li>
   );
 }
