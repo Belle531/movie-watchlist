@@ -122,16 +122,16 @@ function App() {
         {movies.length === 0 ? (
           <p className="text-gray-600">No movies in your watchlist yet. Add one!</p>
         ) : (
-          <ul className="space-y-4">
-            {movies.map(movie => (
-              <MovieCard
-                key={movie.id}
-                movie={movie}
-                onDelete={handleDeleteMovie}
-                onToggleWatched={(id, watched) => handleToggleWatched(id, watched)}
-              />
-            ))}
-          </ul>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {movies.map(movie => (
+    <MovieCard
+      key={movie.id}
+      movie={movie}
+      onDelete={handleDeleteMovie}
+      onToggleWatched={(id, watched) => handleToggleWatched(id, watched)}
+    />
+  ))}
+</ul>
         )}
       </section>
     </div>
