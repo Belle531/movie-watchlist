@@ -1,20 +1,30 @@
-export const scanMovies = jest.fn(() =>
-  Promise.resolve([
+// __mocks__/dynamo.js
+
+export const scanMovies = jest.fn(() => {
+  return [
     {
-      id: '0.11',
       title: 'Akeelah and the Bee',
+      watched: false,
+      id: 'mock-id-1',
+      review: 'A heartwarming movie.',
       genre: 'Family',
-      review: 'A young gifted girl enters a spelling bee.',
       rating: 5,
-      watched: false
     },
     {
-      id: '01d3c354-e4b2-4bc2-87c0-0cffcc8ca328',
-      title: 'The Matrix',
+      title: 'The Matrix', // Or whatever second movie you want to mock
+      watched: false,
+      id: 'mock-id-2',
+      review: 'Mind-bending sci-fi.',
       genre: 'Artificial Intelligence',
-      review: 'A hacker discovers reality is a simulation.',
       rating: 4,
-      watched: false
-    }
-  ])
-);
+    },
+    // Add more mock data if your test expects more items,
+    // but the current test expects only 2.
+  ];
+});
+
+// If you have other functions in dynamo.js that are imported elsewhere,
+// you might need to mock them here as well, e.g.:
+// export const addMovie = jest.fn();
+// export const updateMovie = jest.fn();
+// export const deleteMovie = jest.fn();
