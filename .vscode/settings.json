@@ -1,0 +1,16 @@
+{
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.tabSize": 2,
+  "files.associations": {
+    "*.js": "javascriptreact",
+    "*.ts": "typescriptreact"
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "css.validate": false,
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  }
+}
