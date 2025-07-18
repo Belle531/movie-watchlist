@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
+import { scanMovies } from './dynamo'; // Re-import after mock
 
 // Inline mock for scanMovies
 jest.mock('./dynamo', () => ({
@@ -9,9 +10,6 @@ jest.mock('./dynamo', () => ({
     { id: '2', title: 'The Matrix', year: 1999, watched: false }
   ])
 }));
-
-// Re-import after mock
-import { scanMovies } from './dynamo';
 
 test('renders movie titles from mocked scanMovies', async () => {
   render(<App />);
