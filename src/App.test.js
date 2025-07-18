@@ -1,10 +1,23 @@
-
-
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 
-test("renders movie watchlist title", () => {
+// Inline mock for scanMovies
+jest.mock('./dynamo', () => ({
+  scanMovies: jest.fn().mockResolvedValue([
+    { id: '1', title: 'Akeelah and the Bee', year: 2006, watched: true },
+    { id: '2', title: 'The Matrix', year: 1999, watched: false }
+  ])
+}));
+
+// Re-import after mock
+import { scanMovies } from './dynamo';
+
+test('renders movie titles from mocked scanMovies', async () => {
   render(<App />);
-  const title = screen.getByText(/movie watchlist/i);
-  expect(title).toBeInTheDocument();
+
+  await waitFor(() => expect(scanMovies).toHaveBeenCalled());
+
+  expect(await screen.findByText('Akeelah and the Bee')).toBeInTheDocument();
+  expect(await screen.findByText('The Matrix')).toBeInTheDocument();
 });

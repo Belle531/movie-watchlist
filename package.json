@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hot-toast": "^2.5.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -40,7 +41,9 @@
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "daisyui": "^5.0.46",
+    "html-webpack-plugin": "^5.6.3",
     "postcss": "^8.5.6",
+    "postcss-loader": "^8.1.1",
     "react-scripts": "^5.0.1",
     "tailwindcss": "^3.4.17"
   }

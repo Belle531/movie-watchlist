@@ -1,38 +1,56 @@
-import React from 'react';
+ import React from 'react';
 
-export default function MovieCard({ movie, onDelete, onToggleWatched }) {
+const genreColors = {
+  Action: 'badge-error',
+  Family: 'badge-success',
+  Comedy: 'badge-info',
+  Drama: 'badge-warning',
+  'Artificial Intelligence': 'badge-secondary',
+  Unspecified: 'badge-outline',
+};
+
+function MovieCard({ movie, onDelete, onToggleWatched }) {
+  const badgeClass = genreColors[movie.genre] || 'badge-outline';
+
   return (
-    <li className="card bg-base-100 shadow-md transition hover:shadow-xl hover:-translate-y-1">
-      <div className="card-body">
-        <h2 className="card-title text-indigo-700 text-xl">{movie.title}</h2>
-
-        <div className="space-y-2 text-base">
-          <p><span className="badge badge-outline">Genre</span> {movie.genre}</p>
-          <p><span className="badge badge-outline">Review</span> {movie.review || "No review"}</p>
-          <p><span className="badge badge-outline">Rating</span> {movie.rating > 0 ? '⭐'.repeat(movie.rating) : "Not rated"}</p>
+    <div className="card bg-white/30 backdrop-blur-md border border-base-200 shadow-md transition-transform duration-300 hover:scale-105 p-6 md:p-8 w-full md:w-[500px]">
+      <div className="card-body text-base">
+        {/* 🧠 Title + Genre Badge */}
+        <div className="flex items-center justify-between">
+          <h3 className="card-title font-bold text-3xl leading-tight">{movie.title}</h3>
+          <span className={`badge ${badgeClass} text-base`}>{movie.genre}</span>
         </div>
 
-        <label className="label cursor-pointer mt-3">
-          <span className="label-text text-base text-gray-600 mr-2">
-            {movie.watched ? "Watched" : "Unwatched"}
-          </span>
-          <input
-            type="checkbox"
-            className="toggle toggle-success"
-            checked={movie.watched}
-            onChange={() => onToggleWatched(movie.id, movie.watched)}
-          />
-        </label>
+       <p className="italic mt-2 text-blue-800 text-lg leading-relaxed tracking-wide">
+        “{movie.review}”
+      </p>
 
-        <div className="card-actions justify-end mt-4">
+        {/* ⭐ Rating */}
+        <p className="mt-2 text-yellow-600 font-semibold text-base">⭐ {movie.rating}/5</p>
+
+        {/* 🎬 Watched Status */}
+        <p className="mt-1 text-base text-purple-700">
+          <span className="font-medium">Status:</span> {movie.watched ? 'Watched' : 'Unwatched'}
+        </p>
+
+        {/* 🎛️ Buttons */}
+        <div className="mt-4 flex justify-end space-x-3">
           <button
-            className="btn btn-error"
+            onClick={() => onToggleWatched(movie.id, movie.watched)}
+            className="btn btn-sm btn-info text-base"
+          >
+            Toggle
+          </button>
+          <button
             onClick={() => onDelete(movie.id)}
+            className="btn btn-sm btn-error text-base"
           >
             Delete
           </button>
         </div>
       </div>
-    </li>
+    </div>
   );
 }
+
+export default MovieCard;
