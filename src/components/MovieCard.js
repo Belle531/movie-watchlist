@@ -1,4 +1,4 @@
- import React from 'react';
+import React from 'react';
 
 const genreColors = {
   Action: 'badge-error',
@@ -15,15 +15,27 @@ function MovieCard({ movie, onDelete, onToggleWatched }) {
   return (
     <div className="card bg-white/30 backdrop-blur-md border border-base-200 shadow-md transition-transform duration-300 hover:scale-105 p-6 md:p-8 w-full md:w-[500px]">
       <div className="card-body text-base">
+        {/* 🎞️ Movie Poster */}
+        {movie.poster && (
+          <figure className="mb-4">
+            <img
+              src={movie.poster}
+              alt={`Poster for ${movie.title}`}
+              className="rounded-xl shadow-md mx-auto max-h-[400px] object-cover"
+            />
+          </figure>
+        )}
+
         {/* 🧠 Title + Genre Badge */}
         <div className="flex items-center justify-between">
           <h3 className="card-title font-bold text-3xl leading-tight">{movie.title}</h3>
           <span className={`badge ${badgeClass} text-base`}>{movie.genre}</span>
         </div>
 
-       <p className="italic mt-2 text-blue-800 text-lg leading-relaxed tracking-wide">
-        “{movie.review}”
-      </p>
+        {/* 🎭 Review */}
+        <p className="italic mt-2 text-blue-800 text-lg leading-relaxed tracking-wide">
+          “{movie.review}”
+        </p>
 
         {/* ⭐ Rating */}
         <p className="mt-2 text-yellow-600 font-semibold text-base">⭐ {movie.rating}/5</p>
